@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ImgFile>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    <button type="submit" class="btn btn-success btn-block mb-5 mt-5 btnApi">Add to Database</button>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @foreach (var item in Model)
+            {
+
+                <div class="card" style="width: 24%; margin: 0px 3px; display:inline-block;">
+                    <img src="@item.ImgUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Sitee</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @foreach (var item in Model)
+            {
+
+                <div class="card" style="width: 24%; margin: 0px 3px; display:inline-block;">
+                    <img src="/img/@item.ImgUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Sitee</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            }
+            <button onclick="getUrlAndProcess()"> b</button>
+
+        </div>
+    </div>
+</div>*@
+
+@section Scripts{
+@*    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).on("click", ".btnApi", function myfunction(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/Home/ApiFile",
+                method: "POST",
+                success: function myfunction(response) {
+                    console.log(response);
+                }
+                
+
+            })
+        })
+    </script>
+}
